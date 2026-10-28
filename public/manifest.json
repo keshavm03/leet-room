@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Leet Room",
+  "description": "Solve DSA problems together in synchronized team rooms.",
+  "version": "0.1.0",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "storage", "activeTab"],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://*.leetcode.com/*",
+    "https://geeksforgeeks.org/*",
+    "https://*.geeksforgeeks.org/*",
+    "https://codeforces.com/*",
+    "https://*.codeforces.com/*",
+    "https://*.supabase.co/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Open Leet Room"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/*",
+        "https://*.leetcode.com/*",
+        "https://geeksforgeeks.org/*",
+        "https://*.geeksforgeeks.org/*",
+        "https://codeforces.com/*",
+        "https://*.codeforces.com/*"
+      ],
+      "js": ["site-config.js", "leetcode-content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
